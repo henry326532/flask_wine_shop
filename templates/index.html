@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利合兴金门高粱酒专卖店</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>利合兴金门高粱酒专卖店</h1>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">产品展示</a></li>
+                <li><a href="#">联系方式</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <h2>发现精选的金门高粱酒</h2>
+            <p>专注于为您提供的高品质高粱酒</p>
+            <a href="#" class="btn">探索更多</a>
+        </section>
+
+        <section class="about">
+            <h2>关于我们</h2>
+            <p>我们是一家专注于高品质金门高粱酒的专卖店</p>
+            <p>致力于为高粱酒爱好者提供丰富的选择和优质的服务</p>
+        </section>
+
+        <section class="featured-wines">
+            <h2>特色产品</h2>
+            <div class="wine-list">
+                <!-- Dynamic content from Flask can be inserted here using Jinja2 -->
+                <!-- Example: -->
+                {% for wine in wines %}
+                <div>
+                    <img src="{{ wine['img'] }}" alt="{{ wine['name'] }}">
+                    <h3>{{ wine['name'] }}</h3>
+                    <p>{{ wine['description'] }}</p>
+                    <p>价格: ¥{{ wine['price'] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+
+    <section class="contact">
+        <img src="{{ url_for('static', filename='images/contact.png') }}" alt="利合兴金门高粱酒专卖店">
+        <div class="info">
+            <h2>联系方式</h2>
+            <p>邮箱: info@yourwineshop.com</p>
+            <p>电话: 123-456-7890</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 利合兴金门高粱酒专卖店. 版权所有。</p>
+    </footer>
+</body>
+</html>

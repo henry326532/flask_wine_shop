@@ -39,10 +39,12 @@
                 <!-- Example: -->
                 {% for wine in wines %}
                 <div>
-                    <img src="{{ wine['img'] }}" alt="{{ wine['name'] }}">
-                    <h3>{{ wine['name'] }}</h3>
-                    <p>{{ wine['description'] }}</p>
-                    <p>价格: ¥{{ wine['price'] }}</p>
+
+                    <img src="{{ url_for('static', filename=wine.image_path) }}"  alt="{{ wine.image_path }}">
+                    <h3>{{ wine.name }}</h3>
+                    <p>{{ wine.description }}</p>
+                    <p>价格: ¥{{ wine.price }}</p>
+
                 </div>
                 {% endfor %}
             </div>
@@ -56,8 +58,10 @@
             <h2>联系方式</h2>
             <p>邮箱: info@yourwineshop.com</p>
             <p>电话: 123-456-7890</p>
+            <a href="{{ url_for('list_wine') }}">List Wine</a>
         </div>
     </section>
+
     <footer>
         <p>&copy; 2024 利合兴金门高粱酒专卖店. 版权所有。</p>
     </footer>

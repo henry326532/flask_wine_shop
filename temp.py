@@ -1,8 +1,3 @@
-from flask import Flask, render_template
-
-app = Flask(__name__, static_folder='static')
-
-
 wines = [
     {
         'name':'千日醇',
@@ -23,10 +18,3 @@ wines = [
         'img':'static/wines/38度金門高粱酒.jpg'
     }
 ]
-
-@app.route('/')
-def index():
-    return render_template('index.html', wines=wines)
-
-if __name__ == '__main__':
-    app.run(debug=True)

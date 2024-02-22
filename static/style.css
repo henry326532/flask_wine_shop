@@ -4,19 +4,28 @@
 }
 
 header{
-    background-color:black;
+    background-color: rgb(0, 0, 0);
     height: 120px;
     width: 100%;
+    overflow: visible; /* Change this from hidden to visible */
+    position: sticky;
+    top: 0;
 }
-header li{
-    display: inline;
-    margin-right: 4vw;
+header.transparent, #navMenu.transparent {
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust transparency as needed */
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
-header ul{
+#navMenu{
+    display:block;
+    background-color: transparent;
     position: absolute;
     right: 5vw;
     top: 0;
     line-height: 120px;
+}
+header li{
+    display: inline;
+    margin-right: 4vw;
 }
 header a{
     color:white;
@@ -24,6 +33,9 @@ header a{
 }
 header a:hover{
     text-decoration: underline;
+}
+.menu{
+    display: none;
 }
 h1{
     position: absolute;
@@ -38,6 +50,20 @@ h1{
     text-indent: -99999px;
 }
 
+footer{
+    background-color: #000000;
+    color: #b7b7b7;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+
+
+/* index.html start */
 .hero{
     background-color: antiquewhite;
     color:white;
@@ -66,7 +92,6 @@ h1{
     padding: 10px 20px;
     border-radius: 5px;
 }
-
 .about{
     background-color: #485652;
     color: white;
@@ -79,7 +104,27 @@ h1{
     line-height: 1.8em;
 }
 
-
+.featured-wines{
+    background-color: #ede9db;
+}
+.featured-wines h2{
+    line-height: 60px;
+    text-align: center;
+}
+.wine-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 180px 80px;
+}
+.wine-list div{
+    width: 300px;
+    text-align: center;
+}
+.wine-list img{
+    width: 100%;
+    border-radius: 10px;
+}
 
 .contact{
     display: flex;
@@ -104,36 +149,52 @@ h1{
     text-align: center;
     line-height: 2em;
 }
+/* index.html end */
 
-footer{
-    background-color: #000000;
-    color: #b7b7b7;
-    height: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-}
+/*  */
+@media screen and (max-width:1000px){
+    header ul{
+        display: none;
+    }
+    header h1{
+        left:50%;
+        transform: translateX(-50%);
+    }
+    .menu{
+        display: block;
+        background-color: transparent;
+        color: white;
+        font-size: 35px;
+        position: absolute;
+        top: 40px; 
+        left: 40px;
+        border: none;
+        cursor: pointer;
+    }
+    #navMenu {
+        display: none;
+        position: absolute; /* Ensure it can overlay content below */
+        background-color: rgb(0, 0, 0); /* Match the header background or as desired */
+        width: 100%; /* Full width or adjust as needed */
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);  /* Optional: Adds a shadow for depth*/
+        top: 120px; /* Adjust based on your header's height */
+        left: 0;
+    }
+    header li {
+        display: block; /* Stack the links vertically */
+        margin-right: 0;
+        text-align: center; /* Center align the menu items */
+        font-size: 18px;
+    }
 
-.featured-wines{
-    background-color: #ede9db;
-}
-.featured-wines h2{
-    line-height: 60px;
-    text-align: center;
-}
-.wine-list{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px 180px 80px;
-}
-.wine-list div{
-    width: 300px;
-    text-align: center;
-}
-.wine-list img{
-    width: 100%;
-    border-radius: 10px;
+    /* index.html start */
+    .hero h2{
+        font-size:40px;
+    }
+    .contact h2{
+        font-size:30px;
+    }
+    .contact p{
+        font-size:15px;
+    }
 }

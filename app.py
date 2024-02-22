@@ -91,24 +91,7 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-'''
-@app.route('/register', methods=['POST'])
-def register():
-    # Assume form data is being correctly gathered into username, password variables
-    username = request.form['username']
-    password = request.form['password']
-    hashed_password = generate_password_hash(password)
-    
-    new_user = User(username=username, password_hash=hashed_password)
-    
-    try:
-        db.session.add(new_user)
-        db.session.commit()
-        return "User registered successfully!"
-    except IntegrityError:
-        db.session.rollback()  # Roll back the transaction to keep the session clean
-        return "This username is already taken. Please choose another one."
-'''
+
 
 @app.route('/add_wine', methods=['GET', 'POST'])
 @login_required
@@ -201,3 +184,24 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+'''
+@app.route('/register', methods=['POST'])
+def register():
+    # Assume form data is being correctly gathered into username, password variables
+    username = request.form['username']
+    password = request.form['password']
+    hashed_password = generate_password_hash(password)
+    
+    new_user = User(username=username, password_hash=hashed_password)
+    
+    try:
+        db.session.add(new_user)
+        db.session.commit()
+        return "User registered successfully!"
+    except IntegrityError:
+        db.session.rollback()  # Roll back the transaction to keep the session clean
+        return "This username is already taken. Please choose another one."
+'''

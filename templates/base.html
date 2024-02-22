@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利合兴金门高粱酒专卖店</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <button class="menu" onclick="toggleMenu()">&#9776;</button>
+        <h1>利合兴金门高粱酒专卖店</h1>
+        <nav>
+            <ul id="navMenu">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">产品展示</a></li>
+                <li><a href="#">联系方式</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+        <!-- This is where page-specific content will go -->
+        {% endblock %}
+    </main>
+
+
+
+    <footer>
+        <p>&copy; 2024 利合兴金门高粱酒专卖店. 版权所有。</p>
+    </footer>
+    <script>
+        window.addEventListener('scroll', function() {
+          var navbar = document.querySelector('header');
+          var navmenu = document.getElementById("navMenu");
+          var windowWidth = window.innerWidth; // Get the current window width
+          if (window.scrollY > 120) {
+            navbar.classList.add('transparent');
+            if (windowWidth < 1000) {
+                navMenu.classList.add('transparent');
+            }
+          } else {
+            navbar.classList.remove('transparent');
+            navmenu.classList.remove('transparent');
+          }
+        });
+
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

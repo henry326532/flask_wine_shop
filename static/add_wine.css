@@ -30,13 +30,38 @@ input[type="text"],
 input[type="number"],
 input[type="file"],
 textarea {
-    width: 100%;
+    width: calc(100% - 16px); /* Adjusting width for better alignment */
     padding: 8px;
     margin-top: 5px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box; /* Ensures padding doesn't increase the width */
+}
+
+
+/* Styling for the checkbox */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "\2713";
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 button {

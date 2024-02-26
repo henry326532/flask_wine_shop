@@ -36,11 +36,8 @@ class Wine(db.Model):
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
     image_path = db.Column(db.String(200), nullable=True)
-
-class FeaturedWine(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    wine_id = db.Column(db.Integer, db.ForeignKey('wine.id'), nullable=False)
-    wine = db.relationship('Wine', backref=db.backref('featured', uselist=False))
+    # New column to indicate if the wine is featured or not
+    featured_wine = db.Column(db.Boolean, default=False)
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)

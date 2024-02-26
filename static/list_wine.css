@@ -11,7 +11,7 @@ h1 {
     text-align: center;
 }
 
-a{
+a {
     display: block;
     width: max-content;
     margin: 20px auto;
@@ -21,44 +21,37 @@ a{
     text-align: center;
     border-radius: 5px;
     text-decoration: none;
-} 
+}
 
 a:hover {
     text-decoration: underline;
     background-color: #0056b3;
 }
 
-ul a {
-    background-color: #000000; /* Matching the h1 color */
-    color: #ffffff;
-    text-decoration: none;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-} 
-
-ul a:hover {
-    text-decoration: underline;
-    background-color: #454545;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
+table {
+    width: 100%;
+    border-collapse: collapse;
     background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 5px;
     border-radius: 5px;
-    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+
 }
 
-li form {
-    display: inline;
+th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+
+}
+
+th {
+    background-color: #800000;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
 }
 
 input[type="submit"] {
@@ -68,9 +61,6 @@ input[type="submit"] {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top: 10px;
 }
 
 input[type="submit"]:hover {

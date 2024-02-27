@@ -111,6 +111,7 @@ footer{
     line-height: 60px;
     text-align: center;
 }
+
 .wine-list{
     display: flex;
     justify-content: space-between;
@@ -124,6 +125,15 @@ footer{
 .wine-list img{
     width: 100%;
     border-radius: 10px;
+}
+
+.featured-wines h3 {
+    padding: 5px;
+}
+
+.featured-wines p {
+    padding: 2px;
+    font-size: 16px; /* Adjust as needed */
 }
 
 .contact{
@@ -150,6 +160,29 @@ footer{
     line-height: 2em;
 }
 /* index.html end */
+/* Ensure the wine-list class uses flexbox to layout items */
+.featured-wines .wine-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Style for individual wine items */
+.featured-wines .wine-item {
+    width: calc(33.333% - 40px); /* Subtract margin */
+    margin: 20px;
+    padding-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds subtle shadow */
+    border-radius: 10px; /* Optional: Rounds corners */
+    overflow: hidden; /* Ensures content does not spill outside the border */
+    background-color: #fff; /* Optional: Change to match your site's theme */
+}
+
+.featured-wines .wine-item img {
+    width: 100%;
+    border-bottom: 1px solid #eee; /* Separates image from text */
+}
 
 /*  */
 @media screen and (max-width:1000px){
@@ -196,5 +229,25 @@ footer{
     }
     .contact p{
         font-size:15px;
+    }
+
+
+    .featured-wines .wine-item {
+        flex: 1 1 calc(50% - 40px); /* Adjust for 2 items per row on medium screens */
+    }
+}
+
+@media (max-width: 500px) {
+    .featured-wines .wine-item {
+        flex: 1 1 100%; /* Stack items on small screens */
+    }
+    .about p{
+        font-size: 17px;
+    }
+    .info h2{
+        margin-bottom: 10px;
+    }
+    .info p{
+        font-size: 13px;
     }
 }

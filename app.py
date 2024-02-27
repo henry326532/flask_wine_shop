@@ -90,6 +90,8 @@ def logout():
 
 
 
+from werkzeug.utils import secure_filename
+
 @app.route('/add_wine', methods=['GET', 'POST'])
 @login_required
 def add_wine():
@@ -97,29 +99,28 @@ def add_wine():
         name = request.form['name']
         description = request.form['description']
         price = request.form['price']
-        
+        featured = 'featured' in request.form  # Checks if the checkbox is checked
+
         if 'image' not in request.files:
             return "Error: No image provided."
-        
-        image_file = request.files['image']
 
+        image_file = request.files['image']
         if image_file.filename == '':
             return "Error: No selected image file."
-        
+
         if image_file and allowed_file(image_file.filename):
             filename = image_file.filename
-            print(filename)
             image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image_file.save(image_path)
-            ####################
-            image_path = 'db_wines/'+filename
-            ####################
-            print(image_path)
-            
-            new_wine = Wine(name=name, description=description, price=price, image_path=image_path)
+            print(filename)
+            # Assuming db_wines is within UPLOAD_FOLDER, adjust accordingly
+            db_image_path = 'db_wines/' + filename
+
+
+            new_wine = Wine(name=name, description=description, price=price, image_path=db_image_path, featured_wine=featured)
             db.session.add(new_wine)
             db.session.commit()
-            return redirect(url_for('index'))
+            return redirect(url_for('list_wine'))
         else:
             return "Error: Invalid image file type."
 
@@ -133,7 +134,8 @@ def edit_wine(id):
         wine.name = request.form['name']
         wine.description = request.form['description']
         wine.price = float(request.form['price'])
-        print('123', request.files)
+        wine.featured_wine = 'featured' in request.form  # Checks if the checkbox is checked
+        
         if 'image' not in request.files:
             return "Error: No image provided."
         
@@ -143,16 +145,16 @@ def edit_wine(id):
             return "Error: No selected image file."
         
         if image_file and allowed_file(image_file.filename):
-            filename = image_file.filename
+            filename = image_file.filename  # Sanitize the filename
             image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image_file.save(image_path)
             ####################
-            image_path = 'db_wines/'+filename
+            wine.image_path = 'db_wines/' + filename
             ####################
-            print(image_path)
+
             
             db.session.commit()
-            return redirect(url_for('index'))
+            return redirect(url_for('list_wine'))
         else:
             return "Error: Invalid image file type."
     
@@ -164,7 +166,7 @@ def delete_wine(id):
     wine = Wine.query.get_or_404(id)
     db.session.delete(wine)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('list_wine'))
 
 @app.route('/list_wine')
 @login_required
@@ -174,9 +176,13 @@ def list_wine():
 
 @app.route('/')
 def index():
-    a = Wine.query.all()
-    return render_template('index.html', wines=a)
+    featured_wines = Wine.query.filter_by(featured_wine=True).all()
+    return render_template('index.html', wines=featured_wines)
 
+@app.route('/product_display')
+def product_display():
+    wines = Wine.query.all()
+    return render_template('product_display.html', wines=wines)
 
 
 if __name__ == '__main__':

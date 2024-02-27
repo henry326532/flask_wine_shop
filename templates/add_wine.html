@@ -17,8 +17,10 @@
         <input type="number" id="price" name="price" step="0.01" required><br>
         <label for="image">Image:</label><br>
         <input type="file" name="image" accept="image/*" required>
-        <label for="featured">Featured Wine:</label><br>
-        <input type="checkbox" id="featured" name="featured"><br>
+        <div class='featured'>
+            <label for="featured">Featured Wine:</label><br>
+            <input type="checkbox" id="featured" name="featured"><br>
+        </div>
         <button type="submit">Submit</button>
     </form>
     <a href="{{ url_for('index') }}">Back to home</a>

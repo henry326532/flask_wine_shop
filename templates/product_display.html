@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Product Display - 利合兴金门高粱酒专卖店{% endblock %}
+
+{% block content %}
+<section class="featured-wines">
+    <h2>我们的产品</h2>
+    <div class="wine-list">
+        {% for wine in wines %}
+        <div class="wine-item">
+            <img src="{{ url_for('static', filename=wine.image_path) }}"  alt="{{ wine.image_path }}">
+            <h3>{{ wine.name }}</h3>
+            <p>{{ wine.description }}</p>
+            <p>价格: ¥{{ wine.price }}</p>
+            <a href="#" class="btn">了解更多</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
